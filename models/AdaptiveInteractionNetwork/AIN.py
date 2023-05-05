@@ -52,6 +52,7 @@ class Adaptive(nn.Module):
         self.edgeWeights = nn.Parameter(torch.normal(0, 1, size=(self.inputDim, self.inputDim)))
         self.nodeBiases = nn.Parameter(torch.normal(0, 1, size=(1, self.inputDim)))
         self.adjacencyMat = nn.Parameter(torch.normal(0, 1, size=(self.inputDim, self.inputDim)))
+        self.outputTransform = nn.Parameter(torch.normal(0, 1, size=(self.inputDim, self.outputDim)))
 
     def forward(self, x: Tensor) -> Tensor:
         """
@@ -89,4 +90,4 @@ class Adaptive(nn.Module):
                 nodeVals = nodeVals * self.nodeWeights + self.nodeBiases
             else:
                 nodeVals = nodeVals * self.nodeWeights
-        return nodeVals
+        return torch.matmul(nodeVals, self.outputTransform)
