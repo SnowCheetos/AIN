@@ -1,3 +1,5 @@
 torch
+torchvision
 numpy
 networkx
+sklearn
