@@ -54,6 +54,8 @@ class Adaptive(nn.Module):
         self.adjacencyMat = nn.Parameter(torch.normal(0, 1, size=(self.inputDim, self.inputDim)))
         if inputDim != outputDim:
             self.outputTransform = nn.Parameter(torch.normal(0, 1, size=(self.inputDim, self.outputDim)))
+        else:
+            self.outputTransform = None
 
     def forward(self, x: Tensor) -> Tensor:
         """
