@@ -105,7 +105,10 @@ class PositionalEncoding2D(nn.Module):
         - x (Tensor): The input tensor with shape (batch_size, channels, height, width).
 
         Returns:
-        - Tensor: The output tensor with shape (batch_size, channels * height * width).
+        - Tensor: The output tensor with shape (batch_size, channels, height, width).
         """
         # Add the positional encoding to the input tensor and return the result
-        return x + self.pos_encoding.to(x.device)
+        x = x.permute(0, 2, 3, 1)  # Change the input tensor shape to (batch, height, width, channels)
+        x = x + self.pos_encoding.to(x.device)
+        x = x.permute(0, 3, 1, 2)  # Change the output tensor shape back to (batch, channels, height, width)
+        return x
