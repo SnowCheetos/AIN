@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
-from Utils import adaptiveThresholding
+from models.AdaptiveInteractionNetwork.Utils import adaptiveThresholding
 
 class Adaptive(nn.Module):
     """
@@ -53,7 +53,7 @@ class Adaptive(nn.Module):
         self.nodeBiases = nn.Parameter(torch.normal(0, 1, size=(1, self.inputDim)))
         self.adjacencyMat = nn.Parameter(torch.normal(0, 1, size=(self.inputDim, self.inputDim)))
         if inputDim != outputDim:
-            self.outputTransform = nn.Parameter(torch.normal(0, 1, size=(self.inputDim, self.outputDim)))
+            self.outputTransform = nn.Linear(self.inputDim, self.outputDim, bias=self.bias)
         else:
             self.outputTransform = None
 
@@ -94,5 +94,5 @@ class Adaptive(nn.Module):
             else:
                 nodeVals = nodeVals * self.nodeWeights
         if self.inputDim != self.outputDim:
-            return torch.matmul(nodeVals, self.outputTransform)
+            return self.outputTransform(nodeVals)
         return nodeVals
