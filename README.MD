@@ -47,7 +47,7 @@ AINs can be used in a variety of fields including but not limited to:
 
 ## Installation
 
-This project was tested with `python 3.9` and `pytorch 3.12`. To instrall, first clone toe repository and enter the file folder:
+This project was tested with `python 3.9` and `pytorch 1.12`. To instrall, first clone toe repository and enter the file folder:
 
 ```bash
 git clone https://github.com/SnowCheetos/AIN.git && cd AIN
