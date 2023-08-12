@@ -120,8 +120,5 @@ The Utils.py file contains several utility functions for the model:
 ## Examples
 Yet to be included...
 
-## Contributing
-Contributions to this project are welcome. Please create a fork of this repository, make your changes, and submit a pull request.
-
 ## License
 This project is licensed under the GNU-3.0 License. Refer to the `LICENSE` file for more information.
